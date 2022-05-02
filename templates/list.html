@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Questions</title>
+</head>
+<h1>Questions</h1>
+<body>
+<br />
+<table>
+    <thead>
+        <tr>
+            <td>ID</td>
+            <td>Submission_time</td>
+            <td>View_number</td>
+            <td>Vote_number</td>
+            <td>Title</td>
+            <td>Message</td>
+            <td>Image</td>
+        </tr>
+    </thead>
+    <tbody>
+          {% for line in questions %}
+                <tr>
+                    {% for key, value in line.items() %}
+                    <td>{{ value }}</td>
+                    {% endfor %}
+                </tr>
+                {% endfor %}
+    </tbody>
+{#            <form action="{{ url_for('route_list') }}" method="POST">#}
+{#                <button type="submit">Delete</button>#}
+{#            </form>#}
+</table>
+</body>
+</html>
