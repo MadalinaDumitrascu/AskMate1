@@ -1,12 +1,12 @@
 from flask import Flask, render_template, request, redirect, url_for
-import data_handler
+import connection
 
 app = Flask(__name__)
 
 
 @app.route("/", methods=["POST", "GET"])
 def display_questions():
-    questions = data_handler.read_questions()
+    questions = connection.read_questions()
     print(questions)
     return render_template("list.html", questions=questions)
 
