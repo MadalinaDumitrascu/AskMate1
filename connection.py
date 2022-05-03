@@ -93,10 +93,14 @@ def convert_new_line(headers, id_question, title, new_question):
 
 
 def write_question(filename, headers, id_question, title, new_question):
+    new_line = []
     with open(filename, 'a') as csvfile:
         csvwriter = csv.writer(csvfile)
-        csvwriter.writerow()
+        csvwriter.writerow(new_line)
     print(filename)
+    return filename
+
+
 
 
 

@@ -20,6 +20,7 @@ def get_answers(filename, question_id):
 
 def generate_id_number(filename):
     id = connection.generate_id_number(filename)
+
     return id
 
 def write_question(filename, headers, id_question, title, new_question):

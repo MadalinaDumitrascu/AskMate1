@@ -8,8 +8,8 @@ def converter(elem):
 
 
 def generate_id_number(ids):
-    ids = [int(id) for id in ids]
-    print(ids)
-
-    return
+    ids = sorted(ids)
+    new_id = ids[-1]
+    print(type(new_id))
+    return new_id
 
