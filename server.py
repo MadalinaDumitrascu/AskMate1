@@ -17,18 +17,20 @@ def get_question_page(question_id):
     answers = data_manager.get_answers(question_id)
     return render_template('question.html',question=question,messages=messages, answers=answers )
 
+
 @app.route("/add-question", methods= ["Post"])
 def form():
     id_question = data_manager.generate_id_number()
-    print(id_question)
     if request.method == "POST":
         title = request.form.get("title")
         new_question = request.form.get("new_question")
-        data_manager.write_data_base(
-            id_question,
-            title,
-            new_question)
-    return render_template("add-question.html")
+        data_manager.write_data_base(id_question, title, new_question)
+    return render_template("list.html", id_question=id_question)
+
+@app.route('/question/1/new-answer', methods = ['POST', 'GET'])
+def new_answer():
+    return render_template('new_answer.html' )
+
 
 
 if __name__ == "__main__":

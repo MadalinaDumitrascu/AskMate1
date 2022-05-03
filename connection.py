@@ -54,7 +54,6 @@ def get_message(question_id):
     for line in content:
         if int(line['id']) == question_id:
             mess = line.get('message')
-            print(mess)
             messages.append(mess)
     return messages
 
@@ -63,11 +62,12 @@ def generate_id_number():
     content = get_data(filename)
     ids = []
     for line in content:
-        print(line)
         for key, val in line.items():
-            if key == line['id']:
+            if key == 'id':
                 ids.append(val)
-    print(ids)
-    new_id = 0
-    # new_id = util.generate_id_number(ids)
+    new_id = util.generate_id_number(ids)
     return new_id
+
+
+def write_data_base(id_question, title, new_question):
+    pass

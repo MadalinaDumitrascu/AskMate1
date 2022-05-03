@@ -28,5 +28,6 @@ def generate_id_number():
     return id
 
 def write_data_base(id_question, title, new_question):
-    pass
+    new_entry = connection.write_data_base(id_question, title, new_question)
+
 
