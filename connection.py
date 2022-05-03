@@ -11,14 +11,9 @@ def read_data_base():
         reader = csv.DictReader(file)
         for row in reader:
             questions.append(row)
-    result = []
     for line in questions:
-        new_line = []
-        for elem in line:
-            new_line.append(elem)
-            if elem == elem[1]:
-                new_line.append(get_submission_time(int(elem[1])))
-                result.append(new_line)
+        line['submission_time'] = get_submission_time(line['submission_time'] )
+
     return questions
 
 
