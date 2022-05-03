@@ -7,7 +7,7 @@ import util
 
 def read_data_base():
     questions = []
-    with open("C:\\Users\\Madalina\\Desktop\\Projects\\web\\ask-mate-1-python-MadalinaDumitrascu\\sample_data\\question.csv", "r") as file:
+    with open("D:\\Programare\\Proiecte GitHub\\Web and SQL\\ask-mate-1-python-MadalinaDumitrascu\\sample_data\\question.csv", "r") as file:
         reader = csv.DictReader(file)
         for row in reader:
             questions.append(row)
