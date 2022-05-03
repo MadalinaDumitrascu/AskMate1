@@ -18,8 +18,12 @@
             <td>Submission_time</td>
             <td>View_number</td>
             <td>Vote_number</td>
+<<<<<<< HEAD
             <td <a href ="question.html"> Title</td> </a>
 
+=======
+            <td> Title </td>
+>>>>>>> 409ee54c475cc119fc4c1037f029d67ef21015a9
             <td>Message</td>
             <td>Image</td>
         </tr>
@@ -27,16 +31,20 @@
     <tbody>
           {% for line in questions %}
                 <tr>
-                    {% for key, value in line.items() %}
-                    <td>{{ value }}</td>
-                    {% endfor %}
+                    <td>{{ line.id}}</td>
+                    <td>{{ line.submission_time}}</td>
+                    <td>{{ line.view_number}}</td>
+                    <td>{{ line.vote_number}}</td>
+                    <td> <a href ="{{ url_for('get_question_page', question_id=line.id)}}"> {{ line.title}}</a></td>
+                    <td>{{ line.message}}</td>
+                    <td>{{ line.image}}</td>
                 </tr>
-                {% endfor %}
+            {% endfor %}
     </tbody>
 {#            <form action="{{ url_for('route_list') }}" method="POST">#}
 {#                <button type="submit">Delete</button>#}
 {#            </form>#}
 </table>
-<a href="add-question.html">link text</a>
+
 </body>
 </html>

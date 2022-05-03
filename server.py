@@ -10,6 +10,9 @@ def display_questions():
     print(questions)
     return render_template("list.html", questions=questions)
 
+@app.route("/question/<question_id>", methods=["post", "get"])
+def get_question_page():
+    pass
 
 @app.route("/add-question", methods= ["Post"])
 def add_question():
