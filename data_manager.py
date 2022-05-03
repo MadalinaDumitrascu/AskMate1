@@ -23,5 +23,10 @@ def get_answers(question_id):
     answers = connection.get_answers(question_id)
     return answers
 
+def generate_id_number():
+    id = connection.generate_id_number()
+    return id
 
+def write_data_base(id_question, title, new_question):
+    pass
 

@@ -42,7 +42,6 @@ def get_answers(question_id):
     content = read_data_answers('C:\\Users\\Madalina\\Desktop\\Projects\\web\\ask-mate-1-python-MadalinaDumitrascu\\sample_data\\answer.csv')
     answers = []
     for line in content:
-        print(line)
         if int(line['question_id']) == question_id:
             answ = line.get('message')
             answers.append(answ)
@@ -58,3 +57,17 @@ def get_message(question_id):
             print(mess)
             messages.append(mess)
     return messages
+
+def generate_id_number():
+    filename = 'C:\\Users\\Madalina\\Desktop\\Projects\\web\\ask-mate-1-python-MadalinaDumitrascu\\sample_data\\question.csv'
+    content = get_data(filename)
+    ids = []
+    for line in content:
+        print(line)
+        for key, val in line.items():
+            if key == line['id']:
+                ids.append(val)
+    print(ids)
+    new_id = 0
+    # new_id = util.generate_id_number(ids)
+    return new_id

@@ -19,8 +19,16 @@ def get_question_page(question_id):
 
 @app.route("/add-question", methods= ["Post"])
 def form():
-    id_story = data_handler.get_id_number()
-
+    id_question = data_manager.generate_id_number()
+    print(id_question)
+    if request.method == "POST":
+        title = request.form.get("title")
+        new_question = request.form.get("new_question")
+        data_manager.write_data_base(
+            id_question,
+            title,
+            new_question)
+    return render_template("add-question.html")
 
 
 if __name__ == "__main__":
