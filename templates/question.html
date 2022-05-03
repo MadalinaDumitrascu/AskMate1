@@ -7,26 +7,21 @@
 <body>
 <br>
 <table>
-    <thead>
     <tr>
-        <td>Question</td>
-        <tbody>
-            <tr>
-            <td>{{ question[0] }}</td>
-            </tr>
-        </tbody>
-    <br>
-        <thead>
-            <tr>
-                <td>Answers</td>
-            </tr>
-        </thead>
-    <tbody>
-        {% for answer in answers %}
-                <tr>
-                    <td>{{ answer}}</td>
-    </tbody>
+        <th>Question</th>
+        <th>Message</th>
+        <th>Answers</th>
+    </tr>
+    <tr>
+        <td>{{ question[0] }}</td>
+        {% for message in messages %}
+            <td>{{ message  }}</td>
         {% endfor %}
+        {% for answer in answers %}
+            <td>{{ answer}}</td>
+        {% endfor %}
+    </tr>
+
 </table>
 
 </body>

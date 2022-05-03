@@ -15,6 +15,9 @@ def get_one_question(question_id):
             question.append(quest)
     return question
 
+def get_message(question_id):
+    message = connection.get_message(question_id)
+    return message
 
 def get_answers(question_id):
     answers = connection.get_answers(question_id)

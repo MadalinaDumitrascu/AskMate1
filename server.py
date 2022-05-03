@@ -13,10 +13,12 @@ def display_questions():
 def get_question_page(question_id):
     question_id = int(question_id)
     question = data_manager.get_one_question(question_id)
+    messages = data_manager.get_message(question_id)
     answers = data_manager.get_answers(question_id)
     print(question)
+    print(f'the mess: {messages}')
     print(answers)
-    return render_template('question.html',question=question, answers=answers )
+    return render_template('question.html',question=question,messages=messages, answers=answers )
 
 @app.route("/add-question", methods= ["Post"])
 def add_question():
