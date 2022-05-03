@@ -1,17 +1,21 @@
 from flask import Flask, render_template, request, redirect, url_for
 import data_manager
+import os
+
 
 app = Flask(__name__)
 
+# QUESTIONS = os.environ['QUESTIONS']
 headers=['id', 'submission_time', 'view_number', 'vote_number', 'title', 'message', 'image']
-questions_bd = "C:\\Users\\Madalina\\Desktop\\Projects\\web\\ask-mate-1-python-MadalinaDumitrascu\\sample_data\\question.csv"
+questions_bd = 'C:\\Users\\Madalina\\Desktop\\Projects\\web\\ask-mate-1-python-MadalinaDumitrascu\\sample_data\\question.csv'
 answers_bd = "C:\\Users\\Madalina\\Desktop\\Projects\\web\\ask-mate-1-python-MadalinaDumitrascu\\sample_data\\answer.csv"
 
+# print(QUESTIONS)
 
 @app.route("/", methods=["POST", "GET"])
 def display_questions():
-    filename = questions_bd
-    questions = data_manager.get_data_base(filename)
+
+    questions = data_manager.get_data_base(questions_bd)
     return render_template("list.html", questions=questions)
 
 
@@ -31,7 +35,7 @@ def form():
     id_question = data_manager.generate_id_number(filename)
     if request.method == "POST":
         title = request.form.get("title")
-        new_question = request.form.get("new_question")
+        new_question = request.form.get("question")
         data_manager.write_question(filename, headers, id_question, title, new_question)
     return render_template("add-question.html", id_question=id_question)
 

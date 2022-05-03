@@ -2,7 +2,7 @@ import csv
 import os
 import util
 
-# QUESTIONS = os.environ['QUESTIONS']
+ # QUESTIONS = os.environ['QUESTIONS']
 
 
 
@@ -93,10 +93,9 @@ def convert_new_line(headers, id_question, title, new_question):
 
 
 def write_question(filename, headers, id_question, title, new_question):
-    new_line = convert_new_line(headers, id_question, title, new_question)
-    with open(filename, 'w') as csvfile:
+    with open(filename, 'a') as csvfile:
         csvwriter = csv.writer(csvfile)
-        csvwriter.writerow(new_line)
+        csvwriter.writerow()
     print(filename)
 
 

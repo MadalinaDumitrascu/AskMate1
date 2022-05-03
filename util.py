@@ -9,6 +9,7 @@ def converter(elem):
 
 def generate_id_number(ids):
     ids = [int(id) for id in ids]
-    latest_id = max(ids)
-    return latest_id + 1
+    print(ids)
+
+    return
 
