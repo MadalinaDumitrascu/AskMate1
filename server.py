@@ -7,12 +7,16 @@ app = Flask(__name__)
 @app.route("/", methods=["POST", "GET"])
 def display_questions():
     questions = data_manager.get_data_base()
-    print(questions)
     return render_template("list.html", questions=questions)
 
 @app.route("/question/<question_id>", methods=["post", "get"])
-def get_question_page():
-    pass
+def get_question_page(question_id):
+    question_id = int(question_id)
+    question = data_manager.get_one_question(question_id)
+    answers = data_manager.get_answers(question_id)
+    print(question)
+    print(answers)
+    return render_template('question.html',question=question, answers=answers )
 
 @app.route("/add-question", methods= ["Post"])
 def add_question():

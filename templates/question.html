@@ -5,6 +5,29 @@
     <title>Question</title>
 </head>
 <body>
+<br>
+<table>
+    <thead>
+    <tr>
+        <td>Question</td>
+        <tbody>
+            <tr>
+            <td>{{ question[0] }}</td>
+            </tr>
+        </tbody>
+    <br>
+        <thead>
+            <tr>
+                <td>Answers</td>
+            </tr>
+        </thead>
+    <tbody>
+        {% for answer in answers %}
+                <tr>
+                    <td>{{ answer}}</td>
+    </tbody>
+        {% endfor %}
+</table>
 
 </body>
 </html>
