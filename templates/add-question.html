@@ -11,8 +11,9 @@
   <input type="text" id="question" name="question" ><br><br>
 
      <h1>Submit</h1>
-     <form method="POST" action="add-question.html">
-       <input type="submit"/>
+     <a href="{{ url_for('display_questions')}}">
+      <input type="submit"/>
+     </a>
      </form>
 </form>
 
