@@ -10,8 +10,9 @@ def display_questions():
     # print(questions)
     return render_template("list.html", questions=questions)
 
-# @app.route("/add-question", methods= ["Post"])
-# def add_question():
+@app.route("/add-question", methods= ["Post"])
+def add_question():
+
 
 
 if __name__ == "__main__":
