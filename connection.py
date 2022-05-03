@@ -2,12 +2,12 @@ import csv
 import os
 import util
 
-QUESTIONS = os.environ['QUESTIONS']
+# QUESTIONS = os.environ['QUESTIONS']
 
 
 def read_data_base():
     questions = []
-    with open(QUESTIONS, "r") as file:
+    with open('C:\\Users\\Madalina\\Desktop\\Projects\\web\\ask-mate-1-python-MadalinaDumitrascu\\sample_data\\question.csv', "r") as file:
         reader = csv.DictReader(file)
         for row in reader:
             questions.append(row)
