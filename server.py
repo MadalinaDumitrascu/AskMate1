@@ -12,7 +12,7 @@ def display_questions():
 
 @app.route("/add-question", methods= ["Post"])
 def add_question():
-
+    pass
 
 
 if __name__ == "__main__":
