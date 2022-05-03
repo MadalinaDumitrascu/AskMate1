@@ -39,7 +39,7 @@ def read_data_answers(filename):
 
 
 def get_answers(question_id):
-    content = read_data_answers('C:\\Users\\Madalina\\Desktop\\Projects\\web\\ask-mate-1-python-MadalinaDumitrascu\\sample_data\\answer.csv')
+    content = read_data_answers('D:\\Programare\\Proiecte GitHub\\Web and SQL\\ask-mate-1-python-MadalinaDumitrascu\\sample_data\\answer.csv')
     answers = []
     for line in content:
         print(line)
@@ -49,7 +49,7 @@ def get_answers(question_id):
     return answers
 
 def get_message(question_id):
-    filename= 'C:\\Users\\Madalina\\Desktop\\Projects\\web\\ask-mate-1-python-MadalinaDumitrascu\\sample_data\\question.csv'
+    filename= 'D:\\Programare\\Proiecte GitHub\\Web and SQL\\ask-mate-1-python-MadalinaDumitrascu\\sample_data\\question.csv'
     content= get_data(filename)
     messages = []
     for line in content:
