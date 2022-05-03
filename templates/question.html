@@ -5,6 +5,24 @@
     <title>Question</title>
 </head>
 <body>
+<br>
+<table>
+    <tr>
+        <th>Question</th>
+        <th>Message</th>
+        <th>Answers</th>
+    </tr>
+    <tr>
+        <td>{{ question[0] }}</td>
+        {% for message in messages %}
+            <td>{{ message  }}</td>
+        {% endfor %}
+        {% for answer in answers %}
+            <td>{{ answer}}</td>
+        {% endfor %}
+    </tr>
+
+</table>
 
 </body>
 </html>

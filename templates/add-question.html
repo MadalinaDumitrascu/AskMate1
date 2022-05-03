@@ -1,11 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Add New Question</title>
-</head>
-
+<html>
 <body>
+
+<h2>Add Qquestion</h2>
+
+<form action="/add-question">
+  <label for="title">Your Question:</label><br>
+  <input type="text" id="title" name="fname" value="John"><br>
+  <label for="question">Last name:</label><br>
+  <input type="text" id="question" name="lname" value="Doe"><br><br>
+  <input type="submit" value="Submit">
+</form>
+
+<p>If you click the "Submit" button, the form-data will be sent to a page called "/action_page.php".</p>
 
 </body>
 </html>
