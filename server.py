@@ -10,6 +10,10 @@ def display_questions():
     print(questions)
     return render_template("list.html", questions=questions)
 
+@app.route("/question", methods=["POST", "GET"])
+def display_one_question():
+    question =
+
 
 if __name__ == "__main__":
     app.run(
