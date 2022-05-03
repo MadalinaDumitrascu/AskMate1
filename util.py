@@ -2,6 +2,7 @@ from datetime import datetime
 
 
 def converter(elem):
-    date_time = datetime.fromtimestamp(int(elem))
-    return date_time
+    date = datetime.fromtimestamp(float(elem) / 1000.0,)
+    date = date.strftime('%d/%m/%Y  %H:%M')
+    return date
 
