@@ -7,7 +7,7 @@ app = Flask(__name__)
 @app.route("/", methods=["POST", "GET"])
 def display_questions():
     questions = data_manager.get_data_base()
-    # print(questions)
+    print(questions)
     return render_template("list.html", questions=questions)
 
 @app.route("/add-question", methods= ["Post"])
