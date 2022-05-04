@@ -40,6 +40,7 @@ def select_by_id(filename, question_id):
             quest = line.get('title')
             question.append(quest)
 
+
 def get_submission_time(elem):
     submit_time = util.converter(elem)
     return submit_time

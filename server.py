@@ -7,8 +7,8 @@ app = Flask(__name__)
 
 # QUESTIONS = os.environ['QUESTIONS']
 headers=['id', 'submission_time', 'view_number', 'vote_number', 'title', 'message', 'image']
-questions_bd = 'C:\\Users\\Madalina\\Desktop\\Projects\\web\\ask-mate-1-python-MadalinaDumitrascu\\sample_data\\question.csv'
-answers_bd = "C:\\Users\\Madalina\\Desktop\\Projects\\web\\ask-mate-1-python-MadalinaDumitrascu\\sample_data\\answer.csv"
+questions_bd = 'D:\\Programare\\Proiecte GitHub\\Web and SQL\\ask-mate-1-python-MadalinaDumitrascu\\sample_data\\question.csv'
+answers_bd = "D:\\Programare\\Proiecte GitHub\\Web and SQL\\ask-mate-1-python-MadalinaDumitrascu\\sample_data\\answer.csv"
 
 # print(QUESTIONS)
 
