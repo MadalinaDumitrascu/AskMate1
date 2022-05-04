@@ -19,11 +19,11 @@ def get_data(filename):
 
 def read_data_base(filename):
     questions = []
-<<<<<<< HEAD
+
     with open("D:\\Programare\\Proiecte GitHub\\Web and SQL\\ask-mate-1-python-MadalinaDumitrascu\\sample_data\\question.csv", "r") as file:
-=======
+
     with open(filename, "r") as file:
->>>>>>> 4ef7480ff0b540fbe5c09c6d32d938b8a2b24fdb
+
         reader = csv.DictReader(file)
         for row in reader:
             questions.append(row)
@@ -55,13 +55,13 @@ def get_submission_time(elem):
 #     return content
 
 
-<<<<<<< HEAD
+
 def get_answers(question_id):
     content = read_data_answers('D:\\Programare\\Proiecte GitHub\\Web and SQL\\ask-mate-1-python-MadalinaDumitrascu\\sample_data\\answer.csv')
-=======
+
 def get_answers(filename, question_id):
     content = read_data_base(filename)
->>>>>>> 4ef7480ff0b540fbe5c09c6d32d938b8a2b24fdb
+
     answers = []
     for line in content:
         if int(line['question_id']) == question_id:
@@ -69,13 +69,13 @@ def get_answers(filename, question_id):
             answers.append(answer)
     return answers
 
-<<<<<<< HEAD
+
 def get_message(question_id):
     filename= 'D:\\Programare\\Proiecte GitHub\\Web and SQL\\ask-mate-1-python-MadalinaDumitrascu\\sample_data\\question.csv'
-=======
+
 
 def get_message(filename, question_id):
->>>>>>> 4ef7480ff0b540fbe5c09c6d32d938b8a2b24fdb
+
     content= get_data(filename)
     messages = []
     for line in content:
