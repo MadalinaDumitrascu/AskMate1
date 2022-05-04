@@ -2,7 +2,7 @@ import connection
 
 
 def get_data_base(filename):
-    content = connection.read_data_base(filename)
+    content= connection.get_data(filename)
     return content
 
 

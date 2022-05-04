@@ -17,29 +17,14 @@ def get_data(filename):
     return content
 
 
-def read_data_base(filename):
-    questions = []
-    with open(filename, "r") as file:
-        reader = csv.DictReader(file)
-        for row in reader:
-            questions.append(row)
-    for line in questions:
-        line['submission_time'] = get_submission_time(line['submission_time'] )
-    return questions
-
-
 def select_by_id(filename, question_id):
-    content = read_data_base(filename)
+    content = get_data(filename)
     question = []
     for line in content:
         if int(line['id']) == question_id:
             quest = line.get('title')
             question.append(quest)
-
-def get_submission_time(elem):
-    submit_time = util.converter(elem)
-    return submit_time
-
+    return question
 
 # def read_data_answers(filename):
 #     content = []
@@ -51,7 +36,7 @@ def get_submission_time(elem):
 
 
 def get_answers(filename, question_id):
-    content = read_data_base(filename)
+    content = get_data(filename)
     answers = []
     for line in content:
         if int(line['question_id']) == question_id:

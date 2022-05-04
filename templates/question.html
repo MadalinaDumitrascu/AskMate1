@@ -16,14 +16,19 @@
         <th>Message</th>
         <th>Answers</th>
     </tr>
+
     <tr>
         <td>{{ question[0] }}</td>
         {% for message in messages %}
             <td>{{ message  }}</td>
         {% endfor %}
-        {% for answer in answers %}
-            <td>{{ answer}}</td>
+        <td>{% for answer in answers %}
+            {{ answer}}
+
+            <br>
         {% endfor %}
+        </td>
+
     </tr>
 
 </table>
