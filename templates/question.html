@@ -18,9 +18,9 @@
     </tr>
 
     <tr>
-        <td>{{ question[0] }}</td>
+        <td>{{ question['title'] }}</td>
         {% for message in messages %}
-            <td>{{ message  }}</td>
+            <td>{{ question['message']  }}</td>
         {% endfor %}
         <td>{% for answer in answers %}
             {{ answer}}
@@ -34,9 +34,9 @@
 </table>
 <a href="{{ url_for('display_questions')}}">Home Page</a>
 
-<a href="{{ url_for('new_answer')}}"><button>New Answer</button></a>
+<a href="{{ url_for('new_answer', id=question['id'])}}"><button>New Answer</button></a>
 
-<a href="{{ url_for('delete_question')}} }}"><button>Delete Question</button></a>
+ <a href="{{ url_for('delete_question')}}"><button>Delete</button></a>
 
 </body>
 </html>

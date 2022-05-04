@@ -18,7 +18,7 @@
             <td>Submission_time</td>
             <td>View_number</td>
             <td>Vote_number</td>
-            <td <a href ="question.html"> Title</td> </a>
+            <td> <a href ="question.html"> Title</a></td>
             <td>Message</td>
             <td>Image</td>
         </tr>
@@ -38,8 +38,8 @@
     </tbody>
 
 </table>
-<form action="{{ url_for('form') }}" method="POST">
-        <button type="submit">Submit question</button>
-    </form>
+
+        <a href="{{ url_for('form') }}">Submit question</a>
+
 </body>
 </html>

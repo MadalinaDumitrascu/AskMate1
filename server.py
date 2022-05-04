@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for
 import data_manager
 import os
 import util
-
+import connection
 
 app = Flask(__name__)
 
@@ -53,12 +53,16 @@ def form():
 
 @app.route('/question/1/new-answer', methods = ['POST', 'GET'])
 def new_answer():
+
     return render_template('new_answer.html' )
 
 
-@app.route('/question/<question_id>/delete' , methods = ['POST', 'GET'])
-def delete_question():
-    return render_template('delete_question.html')
+@app.route('/question/<question_id>/delete' , methods = ['DELETE'])
+def delete_question(question_id):
+    filename = questions_bd
+    if method == 'DELETE':
+        deleted_question= connection.delete_question(filename, headers, question_id)
+    return render_template('delete_question.html', question_id = question_id)
 
 
 

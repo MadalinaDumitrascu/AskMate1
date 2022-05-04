@@ -17,39 +17,13 @@ def get_data(filename):
     return content
 
 
-
-def read_data_base(filename):
-    questions = []
-
-
-    with open(filename, "r") as file:
-
-        reader = csv.DictReader(file)
-        for row in reader:
-            questions.append(row)
-    for line in questions:
-        line['submission_time'] = get_submission_time(line['submission_time'] )
-    return questions
-
-
-
 def select_by_id(filename, question_id):
     content = get_data(filename)
     question = []
     for line in content:
         if int(line['id']) == question_id:
-            quest = line.get('title')
-            question.append(quest)
-
-
-
-def get_submission_time(elem):
-    submit_time = util.converter(elem)
-    return submit_time
-
-
+            question.append(line)
     return question
-
 
 # def read_data_answers(filename):
 #     content = []
@@ -60,17 +34,8 @@ def get_submission_time(elem):
 #     return content
 
 
-
-def get_answers(question_id):
-    content = read_data_answers('D:\\Programare\\Proiecte GitHub\\Web and SQL\\ask-mate-1-python-MadalinaDumitrascu\\sample_data\\answer.csv')
-
 def get_answers(filename, question_id):
-
-    content = read_data_base(filename)
-
-
     content = get_data(filename)
-
     answers = []
     for line in content:
         if int(line['question_id']) == question_id:
@@ -79,12 +44,7 @@ def get_answers(filename, question_id):
     return answers
 
 
-def get_message(question_id):
-    filename= 'D:\\Programare\\Proiecte GitHub\\Web and SQL\\ask-mate-1-python-MadalinaDumitrascu\\sample_data\\question.csv'
-
-
 def get_message(filename, question_id):
-
     content= get_data(filename)
     messages = []
     for line in content:
@@ -120,8 +80,14 @@ def write_question(filename, headers, data):
     print(filename)
     return filename
 
-def delete_question(filename)
-
+def delete_question(filename, headers, question_id):
+    content = get_data(filename)
+    new_content = []
+    for line in content:
+        if line['id'] != question_id:
+            new_content.append(line)
+    newfilename = write_question(filename, headers, new_content)
+    return newfilename
 
 
 
