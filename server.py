@@ -54,6 +54,9 @@ def form():
 def new_answer():
     return render_template('new_answer.html' )
 
+@app.route('/question/<question_id>/delete' , methods = ['POST', 'GET'])
+def delete_question():
+    return render_template('delte_question.html')
 
 
 if __name__ == "__main__":

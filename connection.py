@@ -20,7 +20,6 @@ def get_data(filename):
 def read_data_base(filename):
     questions = []
 
-    with open("D:\\Programare\\Proiecte GitHub\\Web and SQL\\ask-mate-1-python-MadalinaDumitrascu\\sample_data\\question.csv", "r") as file:
 
     with open(filename, "r") as file:
 
