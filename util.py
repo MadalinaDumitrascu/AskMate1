@@ -1,5 +1,11 @@
 from datetime import datetime
 
+def get_current_time():
+    now = datetime.now()
+    dt_string = now.strftime("%d/%m/%Y %H:%M:%S")
+    print("date and time =", dt_string)
+    return dt_string
+
 
 def converter(elem):
     date = datetime.fromtimestamp(float(elem) / 1000.0,)

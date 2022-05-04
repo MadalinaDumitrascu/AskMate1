@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for
 import data_manager
 import os
+import util
 
 
 app = Flask(__name__)
@@ -35,8 +36,18 @@ def form():
     id_question = data_manager.generate_id_number(filename)
     if request.method == "POST":
         title = request.form.get("title")
-        new_question = request.form.get("question")
-        data_manager.write_question(filename, headers, id_question, title, new_question)
+        message = request.form.get("question")
+        data_manager.write_question(filename, headers, data={
+            'id': id_question,
+            'submission_time':util.get_current_time(),
+            'view_number': 0,
+            'vote_number': 0,
+            'title': title,
+            'message': message,
+            'image': None
+
+
+        })
     return render_template("add-question.html", id_question=id_question)
 
 @app.route('/question/1/new-answer', methods = ['POST', 'GET'])

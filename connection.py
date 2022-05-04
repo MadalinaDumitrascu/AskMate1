@@ -86,14 +86,11 @@ def get_message(filename, question_id):
 
 
 def generate_id_number(filename):
-    content = get_data(filename)
-    ids = []
-    for line in content:
-        for key, val in line.items():
-            if key == 'id':
-                ids.append(val)
-    new_id = util.generate_id_number(ids)
-    return new_id
+    data = get_data(filename)
+    if not len(data):
+        return 1
+    id_list = max([int(el.get("id")) for el in data])
+    return id_list + 1
 
 
 def convert_new_line(headers, id_question, title, new_question):
@@ -107,13 +104,14 @@ def convert_new_line(headers, id_question, title, new_question):
     return new_line
 
 
-def write_question(filename, headers, id_question, title, new_question):
-    new_line = []
-    with open(filename, 'a') as csvfile:
-        csvwriter = csv.writer(csvfile)
-        csvwriter.writerow(new_line)
+def write_question(filename, headers, data):
+    with open(filename, 'a') as file:
+        writer = csv.DictWriter(file, fieldnames=headers)
+        writer.writerow(data)
     print(filename)
     return filename
+
+
 
 
 
