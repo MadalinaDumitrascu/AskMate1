@@ -4,13 +4,18 @@
 
 <h2>Add Question</h2>
 
-<form action="/add-question">
+<form action="/add-question" method="post">
   <label for="title">Your Question:</label><br>
   <input type="text" id="title" name="title" ><br>
   <label for="question">Your question:</label><br>
   <input type="text" id="question" name="question" ><br><br>
-  <input type="submit" value="Submit">
-</form>
+
+     <h1>Submit</h1>
+     <a href="{{ url_for('display_questions')}}">
+      <input type="submit"/>
+     </a>
+     </form>
+
 
 <p>If you click the "Submit" button, the form-data will be sent to a page called "/add-question.html".</p>
 

@@ -7,8 +7,9 @@ def converter(elem):
     return date
 
 
-# def generate_id_number(ids):
-#     ids= int(ids)
-#     latest_id = max(ids)
-#     return latest_id + 1
+def generate_id_number(ids):
+    ids = sorted(ids)
+    new_id = ids[-1]
+    print(type(new_id))
+    return new_id
 
