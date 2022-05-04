@@ -2,14 +2,14 @@ from flask import Flask, render_template, request, redirect, url_for
 import data_manager
 import os
 import util
-
+import connection
 
 app = Flask(__name__)
 
 # QUESTIONS = os.environ['QUESTIONS']
 headers=['id', 'submission_time', 'view_number', 'vote_number', 'title', 'message', 'image']
-questions_bd = 'C:\\Users\\Madalina\\Desktop\\Projects\\web\\ask-mate-1-python-MadalinaDumitrascu\\sample_data\\question.csv'
-answers_bd = "C:\\Users\\Madalina\\Desktop\\Projects\\web\\ask-mate-1-python-MadalinaDumitrascu\\sample_data\\answer.csv"
+questions_bd = 'D:\\Programare\\Proiecte GitHub\\Web and SQL\\ask-mate-1-python-MadalinaDumitrascu\\sample_data\\question.csv'
+answers_bd = "D:\\Programare\\Proiecte GitHub\\Web and SQL\\ask-mate-1-python-MadalinaDumitrascu\\sample_data\\answer.csv"
 
 # print(QUESTIONS)
 
@@ -53,7 +53,18 @@ def form():
 
 @app.route('/question/1/new-answer', methods = ['POST', 'GET'])
 def new_answer():
+
     return render_template('new_answer.html' )
+
+
+@app.route('/question/<question_id>/delete' , methods = ['DELETE'])
+def delete_question(question_id):
+    filename = questions_bd
+    if method == 'DELETE':
+        deleted_question= connection.delete_question(filename, headers, question_id)
+    return render_template('delete_question.html', question_id = question_id)
+
+
 
 if __name__ == "__main__":
     app.run()

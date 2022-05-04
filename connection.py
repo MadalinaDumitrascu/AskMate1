@@ -80,7 +80,14 @@ def write_question(filename, headers, data):
     print(filename)
     return filename
 
-
+def delete_question(filename, headers, question_id):
+    content = get_data(filename)
+    new_content = []
+    for line in content:
+        if line['id'] != question_id:
+            new_content.append(line)
+    newfilename = write_question(filename, headers, new_content)
+    return newfilename
 
 
 
