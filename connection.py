@@ -19,11 +19,10 @@ def get_data(filename):
 
 def select_by_id(filename, question_id):
     content = get_data(filename)
-    question = []
     for line in content:
-        if int(line['id']) == question_id:
-            question.append(line)
-    return question
+        if line['id'] == question_id:
+            return line
+
 
 # def read_data_answers(filename):
 #     content = []
@@ -38,7 +37,7 @@ def get_answers(filename, question_id):
     content = get_data(filename)
     answers = []
     for line in content:
-        if int(line['question_id']) == question_id:
+        if line['question_id'] == question_id:
             answer = line.get('message')
             answers.append(answer)
     return answers
@@ -48,7 +47,7 @@ def get_message(filename, question_id):
     content= get_data(filename)
     messages = []
     for line in content:
-        if int(line['id']) == question_id:
+        if line['id'] == question_id:
             mess = line.get('message')
             messages.append(mess)
     return messages
@@ -77,8 +76,7 @@ def write_question(filename, headers, data):
     with open(filename, 'a') as file:
         writer = csv.DictWriter(file, fieldnames=headers)
         writer.writerow(data)
-    print(filename)
-    return filename
+
 
 def delete_question(filename, headers, question_id):
     content = get_data(filename)
@@ -86,8 +84,8 @@ def delete_question(filename, headers, question_id):
     for line in content:
         if line['id'] != question_id:
             new_content.append(line)
-    newfilename = write_question(filename, headers, new_content)
-    return newfilename
+    write_question(filename, headers, new_content)
+
 
 
 
