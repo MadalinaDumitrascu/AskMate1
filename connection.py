@@ -78,14 +78,33 @@ def write_question(filename, headers, data):
         writer.writerow(data)
 
 
+def rewrite_db(filename,headers, content):
+    print(content)
+    with open(filename, 'w', newline="") as csv_file:
+        writer = csv.DictWriter(csv_file, fieldnames=headers)
+        writer.writeheader()
+        for line in content:
+            print(line)
+            writer.writerow(line)
+            print(filename)
+
+
 def delete_question(filename, headers, question_id):
     content = get_data(filename)
-    new_content = []
-    for line in content:
-        if line['id'] != question_id:
-            new_content.append(line)
-    write_question(filename, headers, new_content)
+    results = [
+        result
+        for result in get_data(filename)
+        if result["id"] != question_id
+    ]
+    # print(content)
+    # # new_content = []
+    # for line in content:
+    #     if line['id'] != question_id:
+    #         content.remove(line)
+    #         break
+    rewrite_db(filename, headers, results)
 
+    print(f'newline{results}')
 
 
 

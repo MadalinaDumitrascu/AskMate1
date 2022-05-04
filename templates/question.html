@@ -32,9 +32,12 @@
 </table>
 <a href="{{ url_for('display_questions')}}">Home Page</a>
 
-<a href="{{ url_for('new_answer', id=question['id'])}}"><button>New Answer</button></a>
-
- <a href="{{ url_for('delete_question', question_id=question['id'])}}"><button>Delete</button></a>
-
+<a href="{{ url_for('new_answer', question_id=question['id'])}}"><button>New Answer</button></a>
+<form
+                action="{{url_for('delete_question', question_id=question['id'])}}"
+                method="POST"
+            ><button type="submit">Delete</button>
+{# <a href="{{ url_for('delete_question', question_id=question['id'])}}"><button type="submit">Delete</button></a>#}
+</form>
 </body>
 </html>

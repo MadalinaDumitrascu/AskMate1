@@ -10,7 +10,7 @@ app = Flask(__name__)
 headers=['id', 'submission_time', 'view_number', 'vote_number', 'title', 'message', 'image']
 questions_bd = 'C:\\Users\\Madalina\\Desktop\\Projects\\web\\ask-mate-1-python-MadalinaDumitrascu\\sample_data\\question.csv'
 answers_bd = 'C:\\Users\\Madalina\\Desktop\\Projects\\web\\ask-mate-1-python-MadalinaDumitrascu\\sample_data\\answer.csv'
-
+ans_headers = ['id','submission_time','vote_number','question_id','message','image']
 # print(QUESTIONS)
 
 
@@ -27,7 +27,7 @@ def get_question_page(question_id):
     question = data_manager.get_one_question(filename, question_id)
     messages = data_manager.get_message(filename, question_id)
     answers = data_manager.get_answers(answers_bd, question_id)
-    print(answers)
+    print(f'answers{answers}')
     return render_template('question.html', question=question, messages=messages, answers=answers)
 
 
@@ -51,17 +51,29 @@ def form():
     return render_template("add-question.html", id_question=id_question)
 
 
-@app.route('/question/1/new-answer', methods=['POST', 'GET'])
-def new_answer():
-
-    return render_template('new_answer.html' )
+@app.route('/question/<question_id>/new-answer', methods=['POST', 'GET'])
+def new_answer(question_id):
+    filename = answers_bd
+    id_answer = data_manager.generate_id_number(filename)
+    if request.method == 'POST':
+        message = request.form.get("message")
+        data_manager.write_question(filename, headers, data={
+            'id': id_answer,
+            'submission_time': util.get_current_time(),
+            'vote_number': 0,
+            'title': title,
+            'message': message,
+            'image': None
+        })
+        return redirect(url_for('get_question_page'))
+    return render_template('new-answer.html', question_id=question_id)
 
 
 @app.route('/question/<question_id>/delete', methods=['POST', 'GET'])
 def delete_question(question_id):
     filename = questions_bd
     if request.method == 'POST':
-        deleted_question = connection.delete_question(filename, headers, question_id)
+        connection.delete_question(filename, headers, question_id)
     return redirect(url_for('display_questions'))
 
 
