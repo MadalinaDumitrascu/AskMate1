@@ -22,9 +22,11 @@ def display_questions():
 
 @app.route("/question/<question_id>", methods=["post", "get"])
 def get_question_page(question_id):
+    print('here')
     filename = questions_bd
     question_id = int(question_id)
     question = data_manager.get_one_question(filename, question_id)
+    print(question)
     messages = data_manager.get_message(filename, question_id)
     answers = data_manager.get_answers(answers_bd, question_id)
     return render_template('question.html',question=question,messages=messages, answers=answers )
@@ -45,23 +47,20 @@ def form():
             'title': title,
             'message': message,
             'image': None
-
-
         })
+        return redirect(url_for('display_questions'))
     return render_template("add-question.html", id_question=id_question)
 
 @app.route('/question/1/new-answer', methods = ['POST', 'GET'])
 def new_answer():
     return render_template('new_answer.html' )
 
+
 @app.route('/question/<question_id>/delete' , methods = ['POST', 'GET'])
 def delete_question():
-    return render_template('delte_question.html')
+    return render_template('delete_question.html')
+
 
 
 if __name__ == "__main__":
-    app.run(
-        host="0.0.0.0",
-        port=8000,
-        debug=True,
-    )
+    app.run()

@@ -17,6 +17,7 @@ def get_data(filename):
     return content
 
 
+
 def read_data_base(filename):
     questions = []
 
@@ -31,8 +32,9 @@ def read_data_base(filename):
     return questions
 
 
+
 def select_by_id(filename, question_id):
-    content = read_data_base(filename)
+    content = get_data(filename)
     question = []
     for line in content:
         if int(line['id']) == question_id:
@@ -40,9 +42,13 @@ def select_by_id(filename, question_id):
             question.append(quest)
 
 
+
 def get_submission_time(elem):
     submit_time = util.converter(elem)
     return submit_time
+
+
+    return question
 
 
 # def read_data_answers(filename):
@@ -59,7 +65,11 @@ def get_answers(question_id):
     content = read_data_answers('D:\\Programare\\Proiecte GitHub\\Web and SQL\\ask-mate-1-python-MadalinaDumitrascu\\sample_data\\answer.csv')
 
 def get_answers(filename, question_id):
+
     content = read_data_base(filename)
+
+
+    content = get_data(filename)
 
     answers = []
     for line in content:
@@ -110,6 +120,7 @@ def write_question(filename, headers, data):
     print(filename)
     return filename
 
+def delete_question(filename)
 
 
 
