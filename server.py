@@ -8,10 +8,11 @@ app = Flask(__name__)
 
 # QUESTIONS = os.environ['QUESTIONS']
 headers=['id', 'submission_time', 'view_number', 'vote_number', 'title', 'message', 'image']
-questions_bd = 'D:\\Programare\\Proiecte GitHub\\Web and SQL\\ask-mate-1-python-MadalinaDumitrascu\\sample_data\\question.csv'
-answers_bd = "D:\\Programare\\Proiecte GitHub\\Web and SQL\\ask-mate-1-python-MadalinaDumitrascu\\sample_data\\answer.csv"
+questions_bd = 'C:\\Users\\Madalina\\Desktop\\Projects\\web\\ask-mate-1-python-MadalinaDumitrascu\\sample_data\\question.csv'
+answers_bd = 'C:\\Users\\Madalina\\Desktop\\Projects\\web\\ask-mate-1-python-MadalinaDumitrascu\\sample_data\\answer.csv'
 
 # print(QUESTIONS)
+
 
 @app.route("/", methods=["POST", "GET"])
 def display_questions():
@@ -32,7 +33,7 @@ def get_question_page(question_id):
     return render_template('question.html',question=question,messages=messages, answers=answers )
 
 
-@app.route("/add-question", methods= ["POST", "GET"])
+@app.route("/add-question", methods=["POST", "GET"])
 def form():
     filename = questions_bd
     id_question = data_manager.generate_id_number(filename)
@@ -41,7 +42,7 @@ def form():
         message = request.form.get("question")
         data_manager.write_question(filename, headers, data={
             'id': id_question,
-            'submission_time':util.get_current_time(),
+            'submission_time': util.get_current_time(),
             'view_number': 0,
             'vote_number': 0,
             'title': title,
@@ -51,20 +52,21 @@ def form():
         return redirect(url_for('display_questions'))
     return render_template("add-question.html", id_question=id_question)
 
-@app.route('/question/1/new-answer', methods = ['POST', 'GET'])
+
+@app.route('/question/1/new-answer', methods=['POST', 'GET'])
 def new_answer():
 
     return render_template('new_answer.html' )
 
 
-@app.route('/question/<question_id>/delete' , methods = ['DELETE'])
+@app.route('/question/<question_id>/delete', methods=['DELETE'])
 def delete_question(question_id):
     filename = questions_bd
-    if method == 'DELETE':
+    if request.method == 'DELETE':
         deleted_question= connection.delete_question(filename, headers, question_id)
-    return render_template('delete_question.html', question_id = question_id)
+    return render_template('delete_question.html', question_id=question_id)
 
 
 
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)

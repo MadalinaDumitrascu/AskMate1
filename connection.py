@@ -10,7 +10,7 @@ import util
 
 def get_data(filename):
     content = []
-    with open( filename, "r") as file:
+    with open(filename, "r") as file:
         reader = csv.DictReader(file)
         for row in reader:
             content.append(row)
