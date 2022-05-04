@@ -21,9 +21,9 @@ def get_answers(filename, question_id):
 def generate_id_number(filename):
     id = connection.generate_id_number(filename)
 
-    return id
+    return int(id)
 
-def write_question(filename, headers, id_question, title, new_question):
-    new_entry = connection.write_question(filename, headers, id_question, title, new_question)
+def write_question(filename, headers, data):
+    new_entry = connection.write_question(filename, headers, data)
 
 
