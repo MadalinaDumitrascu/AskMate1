@@ -22,8 +22,7 @@ def select_by_id(filename, question_id):
     question = []
     for line in content:
         if int(line['id']) == question_id:
-            quest = line.get('title')
-            question.append(quest)
+            question.append(line)
     return question
 
 # def read_data_answers(filename):
