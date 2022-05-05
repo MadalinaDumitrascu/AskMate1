@@ -12,29 +12,38 @@
 <br>
 <table class="table table hover">
     <tr>
-        <th>Question</th>
-        <th>Message</th>
-        <th>Answers</th>
+        <th>Question Title</th>
+        <th>Question Message</th>
+
     </tr>
 
     <tr>
         <td>{{ question['title'] }}</td>
         <td>{{ question['message'] }}</td>
-        <td>{% for answer in answers %}
-            {{ answer}}
-
-            <br>
-        {% endfor %}
-        </td>
-
     </tr>
-
 </table>
-<a href="{{ url_for('display_questions')}}">Home Page</a>
+<br>
+<table class="table table hover">
+    <thead>
+        <tr>
+            <th>Answer</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for answer in answers %}
+        <tr>
+            <td><a href ="{{ url_for('delete_answer', answer_id=answer.id)}}"> {{ answer.message}}</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
 
 <a href="{{ url_for('new_answer', question_id=question['id'])}}"><button>New Answer</button></a>
-<form action="{{url_for('delete_question', question_id=question['id'])}}" method="POST"><button type="submit">Delete</button>
-{# <a href="{{ url_for('delete_question', question_id=question['id'])}}"><button type="submit">Delete</button></a>#}
-</form>
+<form action="{{url_for('delete_question', question_id=question['id'])}}" method="POST"><button type="submit">Delete Question</button>
+<br>
+<a href="{{ url_for('display_questions')}}">Home Page</a>
+
+
 </body>
 </html>

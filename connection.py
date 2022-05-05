@@ -38,10 +38,11 @@ def get_answers(filename, question_id):
     answers = []
     for line in content:
         if line['question_id'] == question_id:
-            answer = line.get('message')
-            answers.append(answer)
+            # answer = line.get('message')
+            answers.append(line)
     return answers
 
+# def get_answer_message()
 
 def get_message(filename, question_id):
     content= get_data(filename)
@@ -94,16 +95,16 @@ def rewrite_db(filename, headers, content):
                 raise
 
 
-def delete_question(filename, headers, question_id):
+def delete_info(filename, headers, question_id):
     content = get_data(filename)
-    print(content)
     # results = [result for result in get_data(filename)if result["id"] != question_id]
     results = []
     for question in content:
         if question['id'] != question_id:
             results.append(question)
-    print(f'rezultat {results}')
     rewrite_db(filename, headers, results)
+
+
 
 
 

@@ -18,7 +18,7 @@ ans_headers = ['id','submission_time','vote_number','question_id','message','ima
 def display_questions():
 
     questions = data_manager.get_data_base(questions_bd)
-    return render_template("list.html", questions=questions)
+    return render_template("all-questions.html", questions=questions)
 
 
 @app.route("/question/<question_id>", methods=["post", "get"])
@@ -27,6 +27,7 @@ def get_question_page(question_id):
     question = data_manager.get_one_question(filename, question_id)
     messages = data_manager.get_message(filename, question_id)
     answers = data_manager.get_answers(answers_bd, question_id)
+
     return render_template('question.html', question=question, messages=messages, answers=answers)
 
 
@@ -72,9 +73,15 @@ def new_answer(question_id):
 def delete_question(question_id):
     filename = questions_bd
     if request.method == 'POST':
-        connection.delete_question(filename, headers, question_id)
+        data_manager.delete_info(filename, headers, question_id)
     return redirect(url_for('display_questions'))
 
+@app.route('/answer/<answer_id>/delete', methods=['POST', 'GET'])
+def delete_answer(answer_id):
+    filename= answers_bd
+    if request.method == 'GET':
+        data_manager.delete_info(filename, answer_id, ans_headers)
+    return redirect(url_for('get_question_page'))
 
 
 if __name__ == "__main__":
