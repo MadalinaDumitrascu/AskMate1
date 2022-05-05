@@ -23,8 +23,11 @@ def generate_id_number(filename):
 
     return int(id)
 
-def write_question(filename, headers, data):
-    new_entry = connection.write_question(filename, headers, data)
+def write(filename, headers, data):
+    new_entry = connection.write(filename, headers, data)
+    print(filename)
+    print(headers)
+    print(data)
 
 
 

@@ -72,7 +72,7 @@ def convert_new_line(headers, id_question, title, new_question):
     return new_line
 
 
-def write_question(filename, headers, data):
+def write(filename, headers, data):
     with open(filename, 'a') as file:
         writer = csv.DictWriter(file, fieldnames=headers)
         writer.writerow(data)

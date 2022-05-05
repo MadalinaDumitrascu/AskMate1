@@ -7,7 +7,7 @@
 <body>
 <h1>Add New Answer</h1>
 
-<form action="/question/new-answer" method="post">
+<form action="/question/{{ question_id }}/new-answer" method="post">
   <label for="message">Your Answer:</label><br>
   <input type="text" id="message" name="message" ><br>
      <h2>Submit</h2>

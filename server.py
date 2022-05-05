@@ -27,7 +27,6 @@ def get_question_page(question_id):
     question = data_manager.get_one_question(filename, question_id)
     messages = data_manager.get_message(filename, question_id)
     answers = data_manager.get_answers(answers_bd, question_id)
-    print(f'answers{answers}')
     return render_template('question.html', question=question, messages=messages, answers=answers)
 
 
@@ -38,7 +37,7 @@ def form():
     if request.method == "POST":
         title = request.form.get("title")
         message = request.form.get("question")
-        data_manager.write_question(filename, headers, data={
+        data_manager.write(filename, headers, data={
             'id': id_question,
             'submission_time': util.get_current_time(),
             'view_number': 0,
@@ -55,17 +54,19 @@ def form():
 def new_answer(question_id):
     filename = answers_bd
     id_answer = data_manager.generate_id_number(filename)
+    print(f'a intrat in new answer')
     if request.method == 'POST':
+        print(f'a trecut de if')
         message = request.form.get("message")
-        data_manager.write_question(filename, headers, data={
+        data_manager.write(filename, ans_headers, data={
             'id': id_answer,
             'submission_time': util.get_current_time(),
             'vote_number': 0,
-            'title': title,
+            'question_id': question_id,
             'message': message,
             'image': None
         })
-        return redirect(url_for('get_question_page'))
+        return redirect(url_for('get_question_page', question_id=question_id))
     return render_template('new-answer.html', question_id=question_id)
 
 
