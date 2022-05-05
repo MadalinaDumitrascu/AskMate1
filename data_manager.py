@@ -26,8 +26,15 @@ def generate_id_number(filename):
 def write(filename, headers, data):
     new_entry = connection.write(filename, headers, data)
 
-def delete_info(filename, headers, answer_id ):
+def delete_info(filename, headers, answer_id):
     connection.delete_info(filename, headers, answer_id)
+
+def increase_vote(filename, headers, question_id):
+    connection.increase_vote(filename, headers, question_id)
+
+def modify_id(filename_two, headers, question_id):
+    connection.modify_id(filename_two, headers, question_id)
+
 
 
 

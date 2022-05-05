@@ -2,11 +2,6 @@ import csv
 import os
 import util
 
- # QUESTIONS = os.environ['QUESTIONS']
-
-
-
-
 
 def get_data(filename):
     content = []
@@ -24,15 +19,6 @@ def select_by_id(filename, question_id):
             return line
 
 
-# def read_data_answers(filename):
-#     content = []
-#     with open(filename, "r") as file:
-#         reader = csv.DictReader(file)
-#         for row in reader:
-#             content.append(row)
-#     return content
-
-
 def get_answers(filename, question_id):
     content = get_data(filename)
     answers = []
@@ -42,7 +28,6 @@ def get_answers(filename, question_id):
             answers.append(line)
     return answers
 
-# def get_answer_message()
 
 def get_message(filename, question_id):
     content= get_data(filename)
@@ -84,9 +69,6 @@ def rewrite_db(filename, headers, content):
         writer = csv.DictWriter(csv_file, fieldnames=headers)
         writer.writeheader()
         for line in content:
-            # print(line)
-            # writer.writerow(line)
-            # print(filename)
             try:
                 writer.writerow(line)
             except Exception as exc:
@@ -94,14 +76,26 @@ def rewrite_db(filename, headers, content):
                 raise
 
 
+def modify_id(filename_two, headers, question_id):
+    content = get_data(filename_two)
+    results = []
+    for line in content:
+        print(line)
+        if line['question_id'] != question_id:
+            results.append(line)
+            print(results)
+    rewrite_db(filename_two, headers, results)
+
+
 def delete_info(filename, headers, question_id):
     content = get_data(filename)
-    # results = [result for result in get_data(filename)if result["id"] != question_id]
     results = []
     for question in content:
         if question['id'] != question_id:
             results.append(question)
     rewrite_db(filename, headers, results)
+
+
 
 def get_answer_id(filename, answer_id):
     content = get_data(filename)
@@ -112,6 +106,20 @@ def get_answer_id(filename, answer_id):
     return question_id
 
 
+def increase_vote(filename, headers, question_id):
+    content = get_data(filename)
+    result = []
+    for line in content:
+        if line['id'] == question_id:
+            print(line)
+            vote = int(line['vote_number'])+1
+            print(vote)
+            line.update({'vote_number': {str(vote)}})
+            print(line)
+            result.append(line)
+        result.append(line)
+    rewrite_db(filename, headers, result)
+    return result
 
 
 

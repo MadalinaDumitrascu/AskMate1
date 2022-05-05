@@ -72,16 +72,28 @@ def new_answer(question_id):
 @app.route('/question/<question_id>/delete', methods=['POST', 'GET'])
 def delete_question(question_id):
     filename = questions_bd
+    filename_two = answers_bd
     if request.method == 'POST':
         data_manager.delete_info(filename, headers, question_id)
+
+        data_manager.modify_id(filename_two, ans_headers, question_id)
     return redirect(url_for('display_questions'))
 
 
 @app.route('/answer/<question_id>/<answer_id>/delete', methods=['POST', 'GET'])
 def delete_answer(question_id, answer_id):
     filename= answers_bd
-    data_manager.delete_info(filename, ans_headers, answer_id)
+    data_manager.delete_info(filename, ans_headers, answer_id,)
     return redirect(url_for('get_question_page', question_id=question_id))
+
+
+@app.route('/question/<question_id>/vote-up', methods=['POST', 'GET'])
+def vote_up(question_id):
+    filename = questions_bd
+    if request.method == 'POST':
+        data_manager.increase_vote(filename, headers, question_id)
+    return redirect(url_for('display_questions'))
+
 
 
 if __name__ == "__main__":
