@@ -76,12 +76,12 @@ def delete_question(question_id):
         data_manager.delete_info(filename, headers, question_id)
     return redirect(url_for('display_questions'))
 
-@app.route('/answer/<answer_id>/delete', methods=['POST', 'GET'])
-def delete_answer(answer_id):
+
+@app.route('/answer/<question_id>/<answer_id>/delete', methods=['POST', 'GET'])
+def delete_answer(question_id, answer_id):
     filename= answers_bd
-    if request.method == 'GET':
-        data_manager.delete_info(filename, answer_id, ans_headers)
-    return redirect(url_for('get_question_page'))
+    data_manager.delete_info(filename, ans_headers, answer_id)
+    return redirect(url_for('get_question_page', question_id=question_id))
 
 
 if __name__ == "__main__":

@@ -26,8 +26,8 @@ def generate_id_number(filename):
 def write(filename, headers, data):
     new_entry = connection.write(filename, headers, data)
 
-def delete_info(filename, answer_id, headers):
-    connection.delete_info(filename, answer_id, headers)
+def delete_info(filename, headers, answer_id ):
+    connection.delete_info(filename, headers, answer_id)
 
 
 

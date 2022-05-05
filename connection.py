@@ -80,7 +80,6 @@ def write(filename, headers, data):
 
 
 def rewrite_db(filename, headers, content):
-    print(content)
     with open(filename, 'w') as csv_file:
         writer = csv.DictWriter(csv_file, fieldnames=headers)
         writer.writeheader()
@@ -103,6 +102,16 @@ def delete_info(filename, headers, question_id):
         if question['id'] != question_id:
             results.append(question)
     rewrite_db(filename, headers, results)
+
+def get_answer_id(filename, answer_id):
+    content = get_data(filename)
+    question_id = ''
+    for line in content:
+        if line['id'] == answer_id:
+            question_id = line['question_id']
+    return question_id
+
+
 
 
 
