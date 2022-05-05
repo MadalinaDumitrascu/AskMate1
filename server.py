@@ -93,11 +93,27 @@ def vote_up(question_id):
     data_manager.increase_vote(filename, headers, question_id)
     return redirect(url_for('display_questions', question_id=question_id))
 
+
 @app.route('/question/<question_id>/vote-down', methods=['POST', 'GET'])
 def vote_down(question_id):
     filename = questions_bd
     data_manager.decrease_vote(filename, headers, question_id)
     return redirect(url_for('display_questions', question_id=question_id))
+
+
+
+@app.route('/answer/<answer_id>/vote-up', methods=['POST', 'GET'])
+def vote_up_answer(answer_id):
+    filename = answers_bd
+    data_manager.increase_vote(filename, ans_headers, answer_id)
+    return redirect(url_for('display_questions', answer_id=answer_id))
+
+
+@app.route('/answer/<answer_id>/vote-down ', methods=['POST', 'GET'])
+def vote_down_answer(answer_id):
+    filename = answers_bd
+    data_manager.decrease_vote(filename, ans_headers, answer_id)
+    return redirect(url_for('display_questions', answer_id=answer_id))
 
 if __name__ == "__main__":
     app.run(debug=True)

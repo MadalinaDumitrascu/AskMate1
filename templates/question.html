@@ -26,13 +26,19 @@
 <table class="table table hover">
     <thead>
         <tr>
-            <th>Answer</th>
+            <th>Answers</th>
+            <th>Votes</th>
+            <th>Vote Up</th>
+            <th>Vote Down</th>
         </tr>
     </thead>
     <tbody>
         {% for answer in answers %}
         <tr>
             <td><a href ="{{ url_for('delete_answer', question_id=question.id, answer_id=answer.id)}}"> {{ answer.message}}</a></td>
+            <td>{{ answer.vote_number }}</td>
+            <td><form action="{{url_for('vote_up_answer', answer_id=answer['id'])}}" method="GET"><button type="submit">Vote Up</button></form></td>
+            <td><form action="{{url_for('vote_down_answer', answer_id=answer['id'])}}" method="GET"><button type="submit">Vote Down</button></form></td>
         </tr>
         {% endfor %}
     </tbody>

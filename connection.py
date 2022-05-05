@@ -104,22 +104,23 @@ def get_answer_id(filename, answer_id):
     return question_id
 
 
-def increase_vote(filename, headers, question_id):
+def increase_vote(filename, headers, id):
     content = get_data(filename)
     result = []
     for line in content:
-        if line['id'] == question_id:
+        if line['id'] == id:
             vote = int(line['vote_number'])+1
             line.update({'vote_number': str(vote)})
         result.append(line)
     rewrite_db(filename, headers, result)
     return result
 
-def decrease_vote(filename, headers, question_id):
+
+def decrease_vote(filename, headers, id):
     content = get_data(filename)
     result = []
     for line in content:
-        if line['id'] == question_id:
+        if line['id'] == id:
             vote = int(line['vote_number'])-1
             line.update({'vote_number': str(vote)})
         result.append(line)
