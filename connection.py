@@ -128,6 +128,15 @@ def decrease_vote(filename, headers, id):
     return result
 
 
+def edit(filename, headers, question_id, title, message):
+    content = get_data(filename)
+    result = []
+    for line in content:
+        if line['id'] == question_id:
+            line.update({'title': title})
+            line.update({'message': message})
+        result.append(line)
+    rewrite_db(filename, headers, result)
 
 
 

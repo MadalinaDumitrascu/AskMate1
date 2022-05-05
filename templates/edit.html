@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Question</title>
+</head>
+<body>
+
+    <h1>Edit Question</h1>
+    {% for element in question %}
+        {% if element == 'title'%}
+
+    <form action="/edit" method="post">
+      <p><label for="title">Question Title:</label></p>
+      <textarea id="title" name="title" rows="4" cols="50">{{ title }}</textarea>
+      <br>
+        {% endif %}
+        {% if element == 'message' %}
+
+      <label for="message">Question Message:</label><br>
+      <input type="text" id="message" name="message" value="{{ message }}"><br><br>
+        {% endif %}
+         <h2>Submit</h2>
+        <button type="submit">Submit</button>
+    {% endfor %}
+</form>
+</body>
+</html>

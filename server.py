@@ -27,7 +27,6 @@ def get_question_page(question_id):
     question = data_manager.get_one_question(filename, question_id)
     messages = data_manager.get_message(filename, question_id)
     answers = data_manager.get_answers(answers_bd, question_id)
-
     return render_template('question.html', question=question, messages=messages, answers=answers)
 
 
@@ -68,6 +67,19 @@ def new_answer(question_id):
         return redirect(url_for('get_question_page', question_id=question_id))
     return render_template('new-answer.html', question_id=question_id)
 
+@app.route('/question/<question_id>/edit', methods=['POST', 'GET'])
+def edit_question(question_id):
+    filename = questions_bd
+    question = data_manager.get_one_question(filename, question_id)
+    title = question['title']
+    message = question['message']
+    print(question)
+    if request.method == 'POST':
+        title = request.form.get("title")
+        message = request.form.get("message")
+        data_manager.edit(filename, headers, question_id, title, message)
+        return redirect(url_for('display_questions'))
+    return render_template("edit.html", question_id=question_id)
 
 @app.route('/question/<question_id>/delete', methods=['POST', 'GET'])
 def delete_question(question_id):

@@ -20,7 +20,6 @@ def get_answers(filename, question_id):
 
 def generate_id_number(filename):
     id = connection.generate_id_number(filename)
-
     return int(id)
 
 
@@ -43,6 +42,7 @@ def increase_vote(filename, headers, id):
 def decrease_vote(filename, headers, id):
     connection.decrease_vote(filename, headers, id)
 
-
+def edit(filename, headers, question_id, title, message):
+    connection.edit(filename, headers, question_id, title, message)
 
 

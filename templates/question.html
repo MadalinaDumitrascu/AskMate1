@@ -14,12 +14,14 @@
     <tr>
         <th>Question Title</th>
         <th>Question Message</th>
+        <th>Edit Question</th>
 
     </tr>
 
     <tr>
         <td>{{ question['title'] }}</td>
         <td>{{ question['message'] }}</td>
+        <td><form action="{{url_for('edit_question', question_id=question['id'])}}" method="GET"><button type="submit">Edit</button></form></td>
     </tr>
 </table>
 <br>
