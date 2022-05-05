@@ -44,7 +44,7 @@ def form():
             'vote_number': 0,
             'title': title,
             'message': message,
-            'image': None
+            'image': ""
         })
         return redirect(url_for('display_questions'))
     return render_template("add-question.html", id_question=id_question)
@@ -54,9 +54,7 @@ def form():
 def new_answer(question_id):
     filename = answers_bd
     id_answer = data_manager.generate_id_number(filename)
-    print(f'a intrat in new answer')
     if request.method == 'POST':
-        print(f'a trecut de if')
         message = request.form.get("message")
         data_manager.write(filename, ans_headers, data={
             'id': id_answer,
@@ -64,7 +62,7 @@ def new_answer(question_id):
             'vote_number': 0,
             'question_id': question_id,
             'message': message,
-            'image': None
+            'image': ""
         })
         return redirect(url_for('get_question_page', question_id=question_id))
     return render_template('new-answer.html', question_id=question_id)
