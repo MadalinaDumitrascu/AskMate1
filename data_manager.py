@@ -35,6 +35,9 @@ def increase_vote(filename, headers, question_id):
 def modify_id(filename_two, headers, question_id):
     connection.modify_id(filename_two, headers, question_id)
 
+def decrease_vote(filename, headers, question_id):
+    connection.decrease_vote(filename, headers, question_id)
+
 
 
 

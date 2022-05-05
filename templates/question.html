@@ -44,6 +44,7 @@
     <br>
 <br>
 <form action="{{url_for('vote_up', question_id=question['id'])}}" method="GET"><button type="submit">Vote Up</button></form>
+<form action="{{url_for('vote_down', question_id=question['id'])}}" method="GET"><button type="submit">Vote Down</button></form>
 
 <a href="{{ url_for('display_questions')}}">Home Page</a>
 
