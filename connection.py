@@ -80,10 +80,8 @@ def modify_id(filename_two, headers, question_id):
     content = get_data(filename_two)
     results = []
     for line in content:
-        print(line)
         if line['question_id'] != question_id:
             results.append(line)
-            print(results)
     rewrite_db(filename_two, headers, results)
 
 
@@ -111,12 +109,8 @@ def increase_vote(filename, headers, question_id):
     result = []
     for line in content:
         if line['id'] == question_id:
-            print(line)
             vote = int(line['vote_number'])+1
-            print(vote)
-            line.update({'vote_number': {str(vote)}})
-            print(line)
-            result.append(line)
+            line.update({'vote_number': str(vote)})
         result.append(line)
     rewrite_db(filename, headers, result)
     return result

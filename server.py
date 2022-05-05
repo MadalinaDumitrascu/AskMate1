@@ -90,9 +90,8 @@ def delete_answer(question_id, answer_id):
 @app.route('/question/<question_id>/vote-up', methods=['POST', 'GET'])
 def vote_up(question_id):
     filename = questions_bd
-    if request.method == 'POST':
-        data_manager.increase_vote(filename, headers, question_id)
-    return redirect(url_for('display_questions'))
+    data_manager.increase_vote(filename, headers, question_id)
+    return redirect(url_for('display_questions', question_id=question_id))
 
 
 

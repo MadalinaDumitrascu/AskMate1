@@ -40,10 +40,11 @@
 
 
 <a href="{{ url_for('new_answer', question_id=question['id'])}}"><button>New Answer</button></a>
-<form action="{{url_for('delete_question', question_id=question['id'])}}" method="POST"><button type="submit">Delete Question</button>
-<form action="{{url_for('vote_up', question_id=question['id'])}}" method="GET"><button type="submit">Vote Up</button>
+<form action="{{url_for('delete_question', question_id=question['id'])}}" method="POST"><button type="submit">Delete Question</button></form>
     <br>
 <br>
+<form action="{{url_for('vote_up', question_id=question['id'])}}" method="GET"><button type="submit">Vote Up</button></form>
+
 <a href="{{ url_for('display_questions')}}">Home Page</a>
 
 
