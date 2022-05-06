@@ -79,7 +79,7 @@ def edit_question(question_id):
         message = request.form.get("message")
         data_manager.edit(filename, headers, question_id, title, message)
         return redirect(url_for('display_questions'))
-    return render_template("edit.html", question_id=question_id)
+    return render_template("edit.html", question_id=question_id, question=question)
 
 @app.route('/question/<question_id>/delete', methods=['POST', 'GET'])
 def delete_question(question_id):
