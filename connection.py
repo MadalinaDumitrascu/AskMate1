@@ -4,58 +4,31 @@ import util
 
 
 def get_data(filename):
-    content = []
     with open(filename, "r") as file:
         reader = csv.DictReader(file)
-        for row in reader:
-            content.append(row)
-    return content
+        return list(reader)
 
 
 def select_by_id(filename, question_id):
-    content = get_data(filename)
-    for line in content:
-        if line["id"] == question_id:
-            return line
+    return [line for line in get_data(filename) if line.get("id") == question_id][0]
 
 
 def get_answers(filename, question_id):
-    content = get_data(filename)
-    answers = []
-    for line in content:
-        if line["question_id"] == question_id:
-            # answer = line.get('message')
-            answers.append(line)
-    return answers
+    return [
+        line for line in get_data(filename) if line.get("question_id") == question_id
+    ]
 
 
 def get_message(filename, question_id):
-    content = get_data(filename)
-    messages = []
-    for line in content:
-        if line["id"] == question_id:
-            mess = line.get("message")
-            messages.append(mess)
-    return messages
+    return [
+        line.get("message")
+        for line in get_data(filename)
+        if line.get("id") == question_id
+    ]
 
 
 def generate_id_number(filename):
-    data = get_data(filename)
-    if not len(data):
-        return 1
-    id_list = max([int(el.get("id")) for el in data])
-    return id_list + 1
-
-
-def convert_new_line(headers, id_question, title, new_question):
-    new_line = {}
-    for elem in headers:
-        new_line[elem] = ""
-    new_line["id"] = id_question
-    new_line["title"] = title
-    new_line["message"] = new_question
-    print(new_line)
-    return new_line
+    return util.generate_id_number(filename)
 
 
 def write(filename, headers, data):
@@ -69,62 +42,54 @@ def rewrite_db(filename, headers, content):
         writer = csv.DictWriter(csv_file, fieldnames=headers)
         writer.writeheader()
         for line in content:
-            try:
-                writer.writerow(line)
-            except Exception as exc:
-                exc.args += (line,)
-                raise
+            writer.writerow(line)
 
 
 def modify_id(filename_two, headers, question_id):
-    content = get_data(filename_two)
-    results = []
-    for line in content:
-        if line["question_id"] != question_id:
-            results.append(line)
-    rewrite_db(filename_two, headers, results)
+    rewrite_db(
+        filename_two,
+        headers,
+        [
+            line
+            for line in get_data(filename_two)
+            if line.get("question_id") != question_id
+        ],
+    )
 
 
 def delete_info(filename, headers, question_id):
-    content = get_data(filename)
-    results = []
-    for question in content:
-        if question["id"] != question_id:
-            results.append(question)
-    rewrite_db(filename, headers, results)
+    rewrite_db(
+        filename,
+        headers,
+        [line for line in get_data(filename) if line.get("id") != question_id],
+    )
 
 
 def get_answer_id(filename, answer_id):
-    content = get_data(filename)
-    question_id = ""
-    for line in content:
-        if line["id"] == answer_id:
-            question_id = line["question_id"]
-    return question_id
+    return [
+        line.get("question_id")
+        for line in get_data(filename)
+        if line.get("id") == answer_id
+    ][0]
+
+
+def vote(filename, headers, id, modifier):
+    result = []
+    for line in get_data(filename):
+        if line["id"] == id:
+            vote = int(line["vote_number"]) + modifier
+            line.update({"vote_number": str(vote)})
+        result.append(line)
+    rewrite_db(filename, headers, result)
+    return result
 
 
 def increase_vote(filename, headers, id):
-    content = get_data(filename)
-    result = []
-    for line in content:
-        if line["id"] == id:
-            vote = int(line["vote_number"]) + 1
-            line.update({"vote_number": str(vote)})
-        result.append(line)
-    rewrite_db(filename, headers, result)
-    return result
+    return vote(filename, headers, id, 1)
 
 
 def decrease_vote(filename, headers, id):
-    content = get_data(filename)
-    result = []
-    for line in content:
-        if line["id"] == id:
-            vote = int(line["vote_number"]) - 1
-            line.update({"vote_number": str(vote)})
-        result.append(line)
-    rewrite_db(filename, headers, result)
-    return result
+    return vote(filename, headers, id, -1)
 
 
 def edit(filename, headers, question_id, title, message):
@@ -132,7 +97,11 @@ def edit(filename, headers, question_id, title, message):
     result = []
     for line in content:
         if line["id"] == question_id:
-            line.update({"title": title})
-            line.update({"message": message})
+            line.update(
+                {
+                    "title": title,
+                    "message": message,
+                }
+            )
         result.append(line)
     rewrite_db(filename, headers, result)
