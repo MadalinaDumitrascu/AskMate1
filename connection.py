@@ -28,7 +28,9 @@ def get_message(filename, question_id):
 
 
 def generate_id_number(filename):
-    return util.generate_id_number(filename)
+    with open(filename, "r") as f:
+        reader = csv.DictReader(f)
+        return max([int(item.get("id")) for item in list(reader)] + [0]) + 1
 
 
 def write(filename, headers, data):
