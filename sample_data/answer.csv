@@ -1,11 +1,7 @@
 id,submission_time,vote_number,question_id,message,image
-1,1493398154,4,1,You need to use brackets: my_list = [],
 2,1493088154,35,1,Look it up in the Python docs,
-7,2022-05-05 18:33:36,0,9,cause u'r stupid!,
-8,2022-05-05 18:33:43,0,9,:)))),
-9,2022-05-05 19:27:35,3,10,mnb,
-10,2022-05-05 19:27:39,-1,10,hgf,
 11,2022-05-05 20:37:39,0,11,the submit question is working!!,
 12,2022-05-05 20:38:14,0,11,the delete answer works,
 13,2022-05-05 20:38:30,1,11,vote up works,
 14,2022-05-05 20:38:45,-1,11,vote down works,
+15,2023-02-19 16:38:32,0,14,yeees,

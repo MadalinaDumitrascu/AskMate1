@@ -8,13 +8,17 @@ app = Flask(__name__)
 
 # QUESTIONS = os.environ['QUESTIONS']
 headers=['id', 'submission_time', 'view_number', 'vote_number', 'title', 'message', 'image']
-questions_bd = 'C:\\Users\\Madalina\\Desktop\\Projects\\web\\ask-mate-1-python-MadalinaDumitrascu\\sample_data\\question.csv'
-answers_bd = 'C:\\Users\\Madalina\\Desktop\\Projects\\web\\ask-mate-1-python-MadalinaDumitrascu\\sample_data\\answer.csv'
+questions_bd = 'C:\\Users\\Asus\\Source\\repos\\ask-mate-1-python-MadalinaDumitrascu\\sample_data\\question.csv'
+answers_bd = 'C:\\Users\\Asus\\Source\\repos\\ask-mate-1-python-MadalinaDumitrascu\\sample_data\\answer.csv'
 ans_headers = ['id','submission_time','vote_number','question_id','message','image']
+
 # print(QUESTIONS)
 
-
 @app.route("/", methods=["POST", "GET"])
+def display_homepage():
+    return render_template("home.html")
+
+@app.route("/questions", methods=["POST", "GET"])
 def display_questions():
 
     questions = data_manager.get_data_base(questions_bd)
