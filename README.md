@@ -8,12 +8,6 @@ The initial version of the site must be able to handle questions and answers. Th
 The management is very interested in the agile development methodologies that they recently heard about, so they are handing out a prioritized list of user stories, called a product backlog. Try to estimate how many of these stories your team can finish until the demo. As the order is important, choose from the beginning of the list as much as you can. The first four stories are the most important.  
   
 
-<br/>  
-
-
-## Rapidfire  
-<table><tr><td valign="top" width="50%">
-
 
 
 ### What are you going to learn?  
@@ -94,6 +88,14 @@ There are "vote up/down" links next to answers.
 Voting uses /answer/<answer_id>/vote_up and /answer/<answer_id>/vote_down endpoints.
 Voting up increases, voting down decreases the vote_number of the answer by one.
 Voting redirects to the question detail page.  
+  
+
+<br/>  
+
+
+## Rapidfire  
+<table><tr><td valign="top" width="50%">
+
 
 
 </td><td valign="top" width="50%">
