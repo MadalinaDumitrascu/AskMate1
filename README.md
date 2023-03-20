@@ -7,7 +7,7 @@ The initial version of the site must be able to handle questions and answers. Th
 
 The management is very interested in the agile development methodologies that they recently heard about, so they are handing out a prioritized list of user stories, called a product backlog. Try to estimate how many of these stories your team can finish until the demo. As the order is important, choose from the beginning of the list as much as you can. The first four stories are the most important.  
   
-
+<img src="https://i.ibb.co/dbwjRGk/Screenshot-21.png" alt="Screenshot-21" border="0" />
 
 
 ### What are you going to learn?  
@@ -25,6 +25,8 @@ CSV handling.
 ### Tasks  
 Implement the /list page that displays all questions.
 
+<img src="https://i.ibb.co/jHcTNMH/Screenshot-22.png" alt="Screenshot-22" border="0" />
+
 The page is available under /list.
 The data is loaded and displayed from question.csv.
 The questions are sorted by most recent.
@@ -35,6 +37,8 @@ There are links to the question pages from the list page.
 The page displays the question title and message.
 The page displays all answers to a question.
 Implement a form that allows the user to add a question.
+
+<img src="https://i.ibb.co/PjQ3VH7/Screenshot-24.png" alt="Screenshot-24" border="0" />
 
 There is an /add-question page with a form.
 The page is linked from the list page.
